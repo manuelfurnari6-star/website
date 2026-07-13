@@ -1,360 +1,40 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#F4F5F7" />
-  <title>Empfohlen • Spiele spielen, Apps testen und Prämien erhalten</title>
-
-  <!-- ============ TikTok Pixel: paste your pixel code here ============ -->
-  <!-- <script>!function(w,d,t){ ... ttq.load('YOUR_PIXEL_ID'); ttq.page(); }(window,document,'ttq');</script> -->
-
-  <script>document.documentElement.classList.add('js');</script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    :root{
-      --ink:#14151A; --ink-soft:#5B6171; --ink-faint:#8A8F9C;
-      --bg:#F4F5F7; --surface:#FFFFFF; --line:#E7E9EF; --line-soft:#EFF1F5;
-      --accent:#6C5CE7; --accent-press:#5649C9; --accent-tint:#F0EDFF;
-      --money:#0FA958; --money-deep:#0B8A48; --money-tint:#E7F6EE;
-      --star:#FFB020; --night:#171A2B; --night-2:#222845;
-      --radius:18px; --radius-sm:13px;
-      --shadow:0 10px 30px rgba(20,21,26,.06);
-      --shadow-card:0 14px 34px rgba(20,21,26,.10);
-      --maxw:440px;
-      --font-d:'Sora', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-      --font-b:'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-    }
-    *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
-    html{ -webkit-text-size-adjust:100%; }
-    body{ margin:0; font-family:var(--font-b); background:var(--bg); color:var(--ink); line-height:1.5; overflow-x:hidden; }
-    a{ color:inherit; }
-    .wrap{ width:100%; max-width:var(--maxw); margin:0 auto; padding:0 16px calc(104px + env(safe-area-inset-bottom)); }
-
-    /* top bar */
-    .topbar{ max-width:var(--maxw); margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:16px 16px 12px; }
-    .brand{ display:flex; align-items:center; gap:12px; }
-    .brand .appicon{ width:30px; height:30px; border-radius:8px; display:block; }
-    .brand b{ font-family:var(--font-d); font-weight:700; font-size:15px; letter-spacing:-.02em; }
-    .secure{ display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; color:var(--money-deep); background:var(--money-tint); padding:5px 9px; border-radius:999px; }
-    .secure svg{ width:12px; height:12px; }
-
-    /* reveal */
-    .js .reveal{ opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1); }
-    .js .reveal.in{ opacity:1; transform:none; }
-
-    /* hero */
-    .hero{ padding:8px 0 4px; }
-    .eyebrow{ display:inline-flex; align-items:center; gap:7px; font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--accent-press); background:var(--accent-tint); padding:7px 11px; border-radius:999px; margin-bottom:16px; }
-    .eyebrow .pulse{ width:7px; height:7px; border-radius:50%; background:var(--accent); position:relative; }
-    .eyebrow .pulse::after{ content:""; position:absolute; inset:-4px; border-radius:50%; border:2px solid var(--accent); opacity:.5; animation:ping 1.8s ease-out infinite; }
-    @keyframes ping{ 0%{transform:scale(.6);opacity:.6;} 100%{transform:scale(1.7);opacity:0;} }
-
-    h1{ font-family:var(--font-d); margin:0; font-size:34px; line-height:1.04; letter-spacing:-.035em; font-weight:800; }
-    h1 .hl{ color:var(--accent); }
-    .lede{ margin:13px 0 0; color:var(--ink-soft); font-size:15.5px; line-height:1.5; max-width:31em; }
-
-    /* notification proof (message match) */
-    .notif{ margin:18px 0 0; display:flex; align-items:flex-start; gap:11px; background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:12px 13px; box-shadow:var(--shadow-card); position:relative; }
-    .notif-ic{ width:42px; height:42px; border-radius:11px; flex:none; overflow:hidden; box-shadow:0 2px 6px rgba(20,21,26,.12); display:block; }
-    .notif-ic .appicon{ width:100%; height:100%; display:block; }
-    .notif-main{ flex:1; min-width:0; }
-    .notif-top{ display:flex; align-items:center; gap:6px; }
-    .notif-app{ font-size:12px; font-weight:700; color:var(--ink); text-transform:uppercase; letter-spacing:.03em; }
-    .notif-time{ margin-left:auto; font-size:11px; color:var(--ink-faint); }
-    .notif-body{ font-size:13.5px; color:var(--ink); line-height:1.35; margin-top:3px; }
-    .notif-body b{ color:var(--money-deep); font-weight:700; }
-    .notif-tag{ position:absolute; top:-9px; right:11px; font-size:9.5px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-faint); background:var(--bg); border:1px solid var(--line); padding:2px 7px; border-radius:999px; }
-
-    .ratingrow{ display:flex; align-items:center; gap:9px; margin:16px 0 0; }
-    .stars{ display:inline-flex; gap:2px; }
-    .stars svg{ width:15px; height:15px; }
-    .ratingrow .rtext{ font-size:13px; color:var(--ink-soft); font-weight:500; }
-    .ratingrow .rtext b{ color:var(--ink); font-weight:700; }
-
-    /* cta */
-    .cta{ display:flex; align-items:center; justify-content:center; gap:9px; width:100%; min-height:58px; border:none; border-radius:16px; background:linear-gradient(180deg,#FF5347 0%,var(--accent-press) 100%); color:#fff; text-decoration:none; font-family:var(--font-d); font-size:17px; font-weight:700; letter-spacing:-.01em; box-shadow:0 12px 26px rgba(255,68,56,.28); cursor:pointer; transition:transform .12s ease, box-shadow .2s ease; margin-top:18px; }
-    .cta:active{ transform:translateY(1px) scale(.992); box-shadow:0 8px 18px rgba(255,68,56,.24); }
-    .cta svg{ width:18px; height:18px; }
-    .cta-arrow{ transition:transform .25s ease; }
-    .cta:hover .cta-arrow{ transform:translateX(3px); }
-    .cta-sub{ text-align:center; font-size:12px; color:var(--ink-faint); margin:9px 0 0; }
-
-    .trustchips{ display:flex; flex-wrap:wrap; gap:7px; margin:13px 0 2px; }
-    .chip{ display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:600; color:var(--ink-soft); background:var(--surface); border:1px solid var(--line); padding:7px 11px; border-radius:999px; }
-    .chip svg{ width:13px; height:13px; color:var(--money); }
-
-    /* sections */
-    .section{ margin-top:30px; }
-    .kicker{ font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--accent-press); margin:0 0 8px; }
-    .h2{ font-family:var(--font-d); font-size:23px; font-weight:700; letter-spacing:-.03em; line-height:1.12; margin:0; }
-
-    /* stats */
-    .stats{ display:grid; grid-template-columns:repeat(3,1fr); background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); }
-    .stat{ padding:15px 8px; text-align:center; border-right:1px solid var(--line-soft); }
-    .stat:last-child{ border-right:none; }
-    .stat .n{ font-family:var(--font-d); font-weight:800; font-size:20px; letter-spacing:-.02em; }
-    .stat .n .u{ color:var(--money); }
-    .stat .l{ font-size:11px; color:var(--ink-faint); margin-top:3px; font-weight:500; }
-
-    /* steps */
-    .steps{ display:grid; gap:10px; margin-top:16px; }
-    .step{ display:flex; gap:13px; align-items:flex-start; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:15px; box-shadow:var(--shadow); }
-    .step .num{ width:32px; height:32px; border-radius:10px; flex:none; background:var(--accent-tint); color:var(--accent-press); font-family:var(--font-d); font-weight:800; font-size:15px; display:flex; align-items:center; justify-content:center; }
-    .step-h{ font-family:var(--font-d); font-weight:700; font-size:15px; letter-spacing:-.01em; }
-    .step-t{ color:var(--ink-soft); font-size:13.5px; margin-top:3px; line-height:1.4; }
-
-    /* reviews */
-    .reviews{ display:grid; gap:10px; margin-top:16px; }
-    .review{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:15px; box-shadow:var(--shadow); }
-    .review-top{ display:flex; align-items:center; gap:11px; }
-    .avatar{ width:38px; height:38px; border-radius:50%; flex:none; display:flex; align-items:center; justify-content:center; font-family:var(--font-d); font-weight:700; font-size:15px; color:#fff; }
-    .review-name{ font-weight:700; font-size:14px; display:flex; align-items:center; gap:6px; }
-    .verified{ display:inline-flex; align-items:center; gap:3px; font-size:10.5px; font-weight:600; color:var(--money-deep); }
-    .verified svg{ width:12px; height:12px; }
-    .review-stars{ display:inline-flex; gap:1px; margin-top:2px; }
-    .review-stars svg{ width:12px; height:12px; }
-    .review-body{ font-size:13.5px; color:var(--ink-soft); line-height:1.45; margin-top:10px; }
-    .review-amt{ display:inline-block; margin-top:10px; font-size:12px; font-weight:700; color:var(--money-deep); background:var(--money-tint); padding:4px 10px; border-radius:999px; }
-    .disc{ font-size:11.5px; color:var(--ink-faint); margin-top:12px; line-height:1.45; }
-
-    /* trust trio */
-    .trio{ display:grid; grid-template-columns:repeat(3,1fr); gap:9px; margin-top:16px; }
-    .tcard{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-sm); padding:14px 9px; text-align:center; box-shadow:var(--shadow); }
-    .tcard .ti{ width:34px; height:34px; margin:0 auto 8px; border-radius:50%; background:var(--money-tint); display:flex; align-items:center; justify-content:center; }
-    .tcard .ti svg{ width:17px; height:17px; color:var(--money-deep); }
-    .tcard .th{ font-family:var(--font-d); font-weight:700; font-size:12.5px; line-height:1.2; }
-    .tcard .tt{ font-size:10.5px; color:var(--ink-faint); margin-top:3px; line-height:1.3; }
-
-    /* payout */
-    .payout{ margin-top:16px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:17px; box-shadow:var(--shadow); }
-    .payout-h{ font-family:var(--font-d); font-weight:700; font-size:15px; display:flex; align-items:center; gap:12px; }
-    .payout-h svg{ width:18px; height:18px; color:var(--money); }
-    .payout-pills{ display:flex; flex-wrap:wrap; gap:7px; margin-top:12px; }
-    .ppill{ font-size:12px; font-weight:600; background:var(--bg); border:1px solid var(--line); padding:7px 11px; border-radius:999px; }
-    .payout-note{ font-size:11.5px; color:var(--ink-faint); margin-top:12px; line-height:1.45; }
-
-    /* final */
-    .final{ margin-top:30px; text-align:center; background:linear-gradient(160deg,var(--night) 0%,var(--night-2) 100%); border-radius:22px; padding:26px 20px; color:#fff; box-shadow:var(--shadow-card); position:relative; overflow:hidden; }
-    .final::before{ content:""; position:absolute; bottom:-50%; left:-15%; width:260px; height:260px; border-radius:50%; background:radial-gradient(circle, rgba(255,68,56,.30), transparent 62%); }
-    .final h3{ font-family:var(--font-d); font-weight:800; font-size:24px; letter-spacing:-.03em; margin:0; position:relative; }
-    .final p{ color:rgba(255,255,255,.72); font-size:14px; margin:9px 0 0; position:relative; }
-    .final .cta{ position:relative; }
-    .footnote{ font-size:11px; color:var(--ink-faint); text-align:center; line-height:1.5; margin:18px 4px 4px; }
-
-    /* sticky */
-    .sticky{ position:fixed; left:0; right:0; bottom:0; z-index:60; background:rgba(255,255,255,.86); -webkit-backdrop-filter:saturate(180%) blur(14px); backdrop-filter:saturate(180%) blur(14px); border-top:1px solid var(--line); padding:10px 16px calc(10px + env(safe-area-inset-bottom)); transform:translateY(120%); transition:transform .35s cubic-bezier(.2,.7,.2,1); }
-    .sticky.show{ transform:none; }
-    .sticky-inner{ max-width:var(--maxw); margin:0 auto; display:flex; align-items:center; gap:12px; }
-    .sticky-info{ flex:1; min-width:0; }
-    .sticky-info .t{ font-family:var(--font-d); font-weight:700; font-size:14px; line-height:1.1; }
-    .sticky-info .s{ font-size:11.5px; color:var(--ink-soft); margin-top:2px; display:flex; align-items:center; gap:4px; }
-    .sticky-info .s svg{ width:12px; height:12px; }
-    .sticky .cta{ margin:0; width:auto; flex:none; padding:0 22px; min-height:50px; font-size:15px; box-shadow:0 8px 18px rgba(255,68,56,.30); }
-    .sticky .cta.pulse-cta{ animation:ctaPulse 2.4s ease-in-out infinite; }
-    @keyframes ctaPulse{ 0%,100%{box-shadow:0 8px 18px rgba(255,68,56,.30);} 50%{box-shadow:0 8px 26px rgba(255,68,56,.55);} }
-
-    /* live toast */
-    .toast-wrap{ position:fixed; left:0; right:0; top:0; z-index:55; display:flex; justify-content:center; pointer-events:none; padding:8px 12px 0; }
-    .toast{ max-width:var(--maxw); width:100%; display:flex; align-items:center; gap:11px; background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:10px 13px; box-shadow:0 12px 30px rgba(20,21,26,.14); transform:translateY(-130%); opacity:0; transition:transform .45s cubic-bezier(.2,.7,.2,1), opacity .45s ease; }
-    .toast.show{ transform:none; opacity:1; }
-    .toast-ic{ width:34px; height:34px; border-radius:50%; background:var(--money-tint); display:flex; align-items:center; justify-content:center; flex:none; }
-    .toast-ic svg{ width:17px; height:17px; }
-    .toast-txt{ font-size:12.5px; color:var(--ink-soft); line-height:1.3; }
-    .toast-txt b{ color:var(--ink); font-weight:700; }
-    .toast-amt{ margin-left:auto; font-family:var(--font-d); font-weight:700; color:var(--money-deep); font-size:14px; }
-
-    *:focus-visible{ outline:3px solid rgba(255,68,56,.45); outline-offset:2px; border-radius:8px; }
-    @media (max-width:360px){ h1{ font-size:30px; } .wrap{ padding-left:13px; padding-right:13px; } .trio .th{ font-size:11.5px; } }
-    @media (prefers-reduced-motion:reduce){ *{ animation:none !important; transition:none !important; } .js .reveal{ opacity:1; transform:none; } }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oferta de Scroll</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100vh;background:linear-gradient(180deg,#0f172a,#111827);color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;display:flex;justify-content:center}
+.page{width:100%;max-width:430px;min-height:100vh;padding:48px 22px;display:flex;flex-direction:column;justify-content:center}
+.badge{align-self:center;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.35);color:#86efac;padding:7px 13px;border-radius:999px;font-size:12px;font-weight:700;margin-bottom:22px}
+h1{text-align:center;font-size:40px;line-height:1.05;margin-bottom:14px}
+h1 span{color:#22c55e}
+.sub{text-align:center;color:#94a3b8;font-size:15px;line-height:1.5;margin-bottom:26px}
+.steps{display:grid;gap:12px;margin-bottom:22px}
+.step{display:flex;gap:13px;align-items:center;background:#111827;border:1px solid #273449;border-radius:16px;padding:16px}
+.num{width:36px;height:36px;border-radius:11px;background:rgba(34,197,94,.12);color:#86efac;display:grid;place-items:center;font-weight:800;flex:none}
+.step-title{font-weight:800;font-size:15px;margin-bottom:2px}
+.step-text{font-size:13px;color:#94a3b8;line-height:1.4}
+.cta{display:flex;align-items:center;justify-content:center;width:100%;min-height:58px;border-radius:16px;background:linear-gradient(180deg,#22c55e,#16a34a);color:#fff;text-decoration:none;font-size:17px;font-weight:800;box-shadow:0 14px 28px rgba(34,197,94,.24)}
+.note{text-align:center;color:#64748b;font-size:11.5px;line-height:1.45;margin-top:13px}
+</style>
 </head>
 <body>
-
-  <!-- reusable block-game app icon -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <defs>
-      <symbol id="appicon" viewBox="0 0 48 48">
-        <rect width="48" height="48" rx="11" fill="#1B1E2E"/>
-        <rect x="9" y="9" width="12" height="12" rx="3" fill="#FF4438"/>
-        <rect x="27" y="9" width="12" height="12" rx="3" fill="#FFB020"/>
-        <rect x="9" y="27" width="12" height="12" rx="3" fill="#3B82F6"/>
-        <rect x="27" y="27" width="12" height="12" rx="3" fill="#0FA958"/>
-      </symbol>
-    </defs>
-  </svg>
-
-  <div class="toast-wrap" aria-live="polite" aria-atomic="true">
-    <div class="toast" id="toast">
-      <div class="toast-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0FA958" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-      <div class="toast-txt" id="toastTxt"></div>
-      <div class="toast-amt" id="toastAmt"></div>
-    </div>
-  </div>
-
-  <header class="topbar">
-    
-<div class="brand">
-  <img src="assets/empfohlen.webp" alt="Empfohlen" style="height:36px;width:auto;display:block;">
-</div>
-<span class="secure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Sicher</span>
-  </header>
-
-  <main class="wrap">
-
-    <!-- HERO -->
-    <section class="hero">
-      <span class="eyebrow reveal"><span class="pulse"></span>Offiziell empfohlen</span>
-
-      <h1 class="reveal">Spiele spielen.<br><span class="hl">Prämien erhalten.</span></h1>
-
-      <p class="lede reveal">Mit Empfohlen spielst du Spiele, beantwortest kurze Umfragen und testest Angebote – anschließend kannst du deine Prämien über PayPal auszahlen lassen.</p>
-
-      <a class="cta" href="https://www.stw4c9hx.com/cmp/5N3PL1/3136PW/" data-cta>
-        Jetzt starten
-        <svg class="cta-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
-      <div class="cta-sub reveal">In 60 Sekunden startklar • keine Karte nötig</div>
-
-      <div class="trustchips reveal">
-        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>100 % kostenlos</span>
-        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>iOS &amp; Android</span>
-        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>PayPal</span>
-      </div>
-    </section>
-
-    <!-- HOW IT WORKS -->
-    <section class="section">
-      <p class="kicker reveal">In 3 Schritten</p>
-      <h2 class="h2 reveal">So funktioniert es</h2>
-      <div class="steps">
-        <div class="step reveal">
-          <div class="num">1</div>
-          <div><div class="step-h">Empfohlen öffnen</div><div class="step-t">Tippe auf den Button und installiere die App – kostenlos und in weniger als einer Minute.</div></div>
-        </div>
-        <div class="step reveal">
-          <div class="num">2</div>
-          <div><div class="step-h">Spielen &amp; Angebote abschließen</div><div class="step-t">Spiele Games, teste Apps oder beantworte kurze Umfragen – wähle einfach aus, was dir gefällt.</div></div>
-        </div>
-        <div class="step reveal">
-          <div class="num">3</div>
-          <div><div class="step-h">Über PayPal auszahlen</div><div class="step-t">Sammle deine Prämien und lasse dein Guthaben direkt über PayPal auszahlen.</div></div>
-        </div>
-      </div>
-      <a class="cta" href="https://www.stw4c9hx.com/cmp/5N3PL1/3136PW/" data-cta>
-        Jetzt starten
-        <svg class="cta-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
-    </section>
-
-    <!-- TRUST TRIO -->
-    <section class="section reveal">
-      <div class="trio">
-        <div class="tcard">
-          <div class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-          <div class="th">100 % kostenlos</div>
-          <div class="tt">kein Risiko, keine Kosten</div>
-        </div>
-        <div class="tcard">
-          <div class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-          <div class="th">Sicher payout</div>
-          <div class="tt">direkt über PayPal</div>
-        </div>
-        <div class="tcard">
-          <div class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
-          <div class="th">Sofort startklar</div>
-          <div class="tt">in 60 Sekunden</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PAYOUT -->
-    <section class="section reveal">
-      <div class="payout">
-        <div class="payout-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>Prämien auszahlen</div>
-        <div class="payout-pills">
-          <span class="ppill">PayPal</span>
-          <span class="ppill">Schneller Zugriff</span>
-          <span class="ppill">Mehrere Methoden</span>
-          <span class="ppill">24/7 in der App</span>
-        </div>
-        <div class="payout-note">Auszahlungsoptionen, Bearbeitungszeiten und Verfügbarkeit können je nach Konto, Region und abgeschlossenen Angeboten variieren.</div>
-      </div>
-    </section>
-
-    <!-- FINAL CTA -->
-    <section class="final reveal">
-      <h3>Bereit zu starten?</h3>
-      <p>Starte kostenlos und schließe dein erstes Angebot ab.</p>
-      <a class="cta" href="https://www.stw4c9hx.com/cmp/5N3PL1/3136PW/" data-cta>
-        Jetzt starten
-        <svg class="cta-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
-    </section>
-
-    <p class="footnote">Es gelten Bedingungen • Prämien variieren je nach Angebot • Folge den Schritten in der App für korrektes Tracking • Keine garantierten Einnahmen.</p>
-
-  </main>
-
-  <!-- STICKY CTA -->
-  <div class="sticky" id="sticky">
-    <div class="sticky-inner">
-      <div class="sticky-info">
-        <div class="t">Prämien mit Empfohlen erhalten</div>
-        <div class="s"><svg viewBox="0 0 24 24" fill="none" stroke="#0FA958" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Kostenlos • PayPal</div>
-      </div>
-      <a class="cta pulse-cta" href="https://www.stw4c9hx.com/cmp/5N3PL1/3136PW/" data-cta>Starten</a>
-    </div>
-  </div>
-
-  <script>
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    /* reveal on scroll */
-    (function(){
-      const els = document.querySelectorAll('.reveal');
-      if(reduce || !('IntersectionObserver' in window)){ els.forEach(e=>e.classList.add('in')); return; }
-      const io = new IntersectionObserver((ents)=>{ ents.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } }); },{threshold:.12, rootMargin:'0px 0px -40px 0px'});
-      els.forEach(e=>io.observe(e));
-      setTimeout(()=>{ document.querySelectorAll('.reveal:not(.in)').forEach(e=>{ const r=e.getBoundingClientRect(); if(r.top<window.innerHeight) e.classList.add('in'); }); }, 4000);
-    })();
-
-    /* sticky bar */
-    (function(){
-      const sticky = document.getElementById('sticky');
-      const hero = document.querySelector('.hero .cta');
-      const io = new IntersectionObserver((ents)=>{ ents.forEach(en=>{ sticky.classList.toggle('show', !en.isIntersecting); }); },{threshold:0});
-      io.observe(hero);
-    })();
-
-    /* live activity toasts */
-    (function(){
-      const updates = [
-        { name:'Emma',   amount:'$18.00', sub:'nach 2 Angeboten' },
-        { name:'Liam',   amount:'$12.00', sub:'nach einem App-Angebot' },
-        { name:'Olivia', amount:'$24.00', sub:'nach einem Spiele-Angebot' },
-        { name:'Noah',   amount:'$31.00', sub:'nach einem Mobile-Angebot' },
-        { name:'Ava',    amount:'$16.00', sub:'nach 2 Angeboten' },
-        { name:'Mason',  amount:'$27.00', sub:'nach einem Tester-Angebot' }
-      ];
-      const toast = document.getElementById('toast');
-      const txt = document.getElementById('toastTxt');
-      const amt = document.getElementById('toastAmt');
-      let i = 0;
-      function show(){
-        const u = updates[i % updates.length];
-        txt.innerHTML = '<b>'+u.name+'</b> hat gerade ausgezahlt<br>'+u.sub;
-        amt.textContent = '+'+u.amount;
-        toast.classList.add('show');
-        setTimeout(()=> toast.classList.remove('show'), 2600);
-        i++;
-      }
-      setTimeout(show, 2400);
-      setInterval(show, 6500);
-    })();
-  </script>
+<main class="page">
+<div class="badge">Oferta para novos usuários</div>
+<h1>Role, explore e <span>receba recompensas</span></h1>
+<p class="sub">Baixe o app, crie sua conta e confira as atividades disponíveis.</p>
+<section class="steps">
+<div class="step"><div class="num">1</div><div><div class="step-title">Baixe o aplicativo</div><div class="step-text">Instale o app gratuitamente no seu celular.</div></div></div>
+<div class="step"><div class="num">2</div><div><div class="step-title">Abra o aplicativo</div><div class="step-text">Crie uma nova conta e siga as instruções exibidas no app.</div></div></div>
+</section>
+<a class="cta" href="https://linkthem.net/aff_c?offer_id=4549&aff_id=17554" target="_blank" rel="noopener noreferrer">Baixar agora</a>
+<p class="note">A disponibilidade das atividades e recompensas pode variar por usuário, região e requisitos concluídos. Não há ganhos garantidos.</p>
+</main>
+<script>
+(function(){var q=window.location.search,a=document.querySelector('.cta');if(q&&a)a.href+=(a.href.includes('?')?'&':'?')+q.slice(1)})();
+</script>
 </body>
 </html>/
