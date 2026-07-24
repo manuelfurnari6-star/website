@@ -116,52 +116,63 @@ function goCta(e){
   setTimeout(function(){ window.location.href = target; }, 250);
 }
 
-// Animierter Aktivitätszähler: startet bei 0, zählt auf 1.244 hoch
-// und verändert sich danach gelegentlich leicht.
-(function(){
-  const el = document.getElementById('liveCount');
+// Animierter Aktivitätszähler:
+// 1) zählt beim Laden flüssig von 0 auf 1.244
+// 2) verändert sich danach dauerhaft um jeweils 1 oder 2
+(function () {
+  const el = document.getElementById("liveCount");
   if (!el) return;
 
-  const formatter = new Intl.NumberFormat('de-DE');
+  const formatter = new Intl.NumberFormat("de-DE");
   const target = 1244;
-  el.textContent = '0';
-  const duration = 2200;
-  const start = performance.now();
+  const duration = 2400;
+  const startedAt = performance.now();
 
-  function easeOutCubic(t){
+  // Beim echten Öffnen im Browser beginnt der Counter sichtbar bei 0.
+  el.textContent = "0";
+
+  function easeOutCubic(t) {
     return 1 - Math.pow(1 - t, 3);
   }
 
-  function animate(now){
-    const progress = Math.min((now - start) / duration, 1);
+  function countUp(now) {
+    const progress = Math.min((now - startedAt) / duration, 1);
     const value = Math.round(target * easeOutCubic(progress));
     el.textContent = formatter.format(value);
 
     if (progress < 1) {
-      requestAnimationFrame(animate);
+      requestAnimationFrame(countUp);
     } else {
-      startLiveChanges(target);
+      startContinuousUpdates(target);
     }
   }
 
-  function startLiveChanges(initial){
-    let current = initial;
+  function startContinuousUpdates(initialValue) {
+    let current = initialValue;
 
-    function update(){
-      const change = Math.floor(Math.random() * 9) - 3; // -3 bis +5
-      current = Math.max(1215, Math.min(1295, current + change));
+    function changeNumber() {
+      const amount = Math.random() < 0.5 ? 1 : 2;
+      const direction = Math.random() < 0.52 ? 1 : -1;
+
+      current += amount * direction;
+
+      // Kleine, realistische Schwankungsbreite um den Ausgangswert.
+      if (current < 1215) current += amount;
+      if (current > 1290) current -= amount;
+
       el.textContent = formatter.format(current);
 
-      const nextDelay = 1800 + Math.random() * 3200;
-      setTimeout(update, nextDelay);
+      // Ständige Änderungen in kurzen, leicht variierenden Abständen.
+      const nextDelay = 650 + Math.random() * 850;
+      setTimeout(changeNumber, nextDelay);
     }
 
-    setTimeout(update, 2200);
+    setTimeout(changeNumber, 800);
   }
 
-  requestAnimationFrame(animate);
+  requestAnimationFrame(countUp);
 })();
 
 </script>
 </body>
-</html>/
+</html>
