@@ -28,8 +28,7 @@ h1{font-size:clamp(28px,7.5vw,34px);font-weight:900;letter-spacing:-.01em;margin
 .sub{font-size:15.5px;color:var(--muted);margin-bottom:24px}
 .stat{width:100%;background:linear-gradient(170deg,var(--statA),var(--statB));border:1px solid rgba(46,226,122,.35);border-radius:20px;padding:24px 18px;box-shadow:0 0 40px rgba(32,190,90,.15);margin-bottom:22px}
 .stat-num{font-size:44px;font-weight:900;color:var(--green-hi);line-height:1.1;display:flex;align-items:center;justify-content:center;gap:10px;font-variant-numeric:tabular-nums}
-.live-dot{width:12px;height:12px;border-radius:50%;background:var(--green-hi);box-shadow:0 0 16px rgba(46,226,122,.8);animation:livePulse 1.6s ease-in-out infinite}
-@keyframes livePulse{0%,100%{opacity:.55;transform:scale(.9)}50%{opacity:1;transform:scale(1.15)}}
+.live-dot{width:12px;height:12px;border-radius:50%;background:var(--green-hi);box-shadow:0 0 14px rgba(46,226,122,.75)}
 .stat-label{font-size:13px;color:rgba(255,255,255,.78);margin-top:6px}
 .cta{width:100%;display:block;padding:17px 16px;border:none;border-radius:16px;background:linear-gradient(180deg,#35d06a,#1fb254);color:#fff;font-family:inherit;font-size:16.5px;font-weight:900;letter-spacing:.05em;cursor:pointer;box-shadow:0 0 34px rgba(32,190,90,.45);animation:ctaPulse 2.2s ease-in-out infinite;margin-bottom:24px}
 .cta:hover{filter:brightness(1.07)}
@@ -69,7 +68,7 @@ h1{font-size:clamp(28px,7.5vw,34px);font-weight:900;letter-spacing:-.01em;margin
   <p class="sub">Mach aus deiner Gaming-Zeit echtes Geld</p>
 
   <div class="stat">
-    <div class="stat-num"><span class="live-dot" aria-hidden="true"></span><span id="liveCount">1.244</span></div>
+    <div class="stat-num"><span class="live-dot"></span><span id="liveCount">0</span></div>
     <div class="stat-label">Nutzer verdienen gerade Belohnungen</div>
   </div>
 
@@ -94,6 +93,52 @@ h1{font-size:clamp(28px,7.5vw,34px);font-weight:900;letter-spacing:-.01em;margin
 </div>
 
 <script>
+
+// LIVE COUNTER
+document.addEventListener("DOMContentLoaded", function () {
+  var counter = document.getElementById("liveCount");
+  if (!counter) return;
+
+  var target = 1244;
+  var current = 0;
+  var startTime = Date.now();
+  var duration = 2500;
+
+  function formatNumber(value) {
+    return String(value).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
+
+  function countUp() {
+    var elapsed = Date.now() - startTime;
+    var progress = Math.min(elapsed / duration, 1);
+    var eased = 1 - Math.pow(1 - progress, 3);
+
+    current = Math.round(target * eased);
+    counter.textContent = formatNumber(current);
+
+    if (progress < 1) {
+      window.requestAnimationFrame(countUp);
+    } else {
+      current = target;
+
+      window.setInterval(function () {
+        var amount = Math.random() < 0.5 ? 1 : 2;
+        var direction = Math.random() < 0.5 ? -1 : 1;
+
+        current += amount * direction;
+
+        if (current < 1225) current = 1225;
+        if (current > 1270) current = 1270;
+
+        counter.textContent = formatNumber(current);
+      }, 900);
+    }
+  }
+
+  counter.textContent = "0";
+  window.requestAnimationFrame(countUp);
+});
+
 // ===== HIER DEINEN TRACKING-LINK EINSETZEN =====
 const CTA_LINK = "https://DEIN-TRACKING-LINK-HIER";
 
@@ -115,64 +160,6 @@ function goCta(e){
     : CTA_LINK;
   setTimeout(function(){ window.location.href = target; }, 250);
 }
-
-// Animierter Aktivitätszähler:
-// 1) zählt beim Laden flüssig von 0 auf 1.244
-// 2) verändert sich danach dauerhaft um jeweils 1 oder 2
-(function () {
-  const el = document.getElementById("liveCount");
-  if (!el) return;
-
-  const formatter = new Intl.NumberFormat("de-DE");
-  const target = 1244;
-  const duration = 2400;
-  const startedAt = performance.now();
-
-  // Beim echten Öffnen im Browser beginnt der Counter sichtbar bei 0.
-  el.textContent = "0";
-
-  function easeOutCubic(t) {
-    return 1 - Math.pow(1 - t, 3);
-  }
-
-  function countUp(now) {
-    const progress = Math.min((now - startedAt) / duration, 1);
-    const value = Math.round(target * easeOutCubic(progress));
-    el.textContent = formatter.format(value);
-
-    if (progress < 1) {
-      requestAnimationFrame(countUp);
-    } else {
-      startContinuousUpdates(target);
-    }
-  }
-
-  function startContinuousUpdates(initialValue) {
-    let current = initialValue;
-
-    function changeNumber() {
-      const amount = Math.random() < 0.5 ? 1 : 2;
-      const direction = Math.random() < 0.52 ? 1 : -1;
-
-      current += amount * direction;
-
-      // Kleine, realistische Schwankungsbreite um den Ausgangswert.
-      if (current < 1215) current += amount;
-      if (current > 1290) current -= amount;
-
-      el.textContent = formatter.format(current);
-
-      // Ständige Änderungen in kurzen, leicht variierenden Abständen.
-      const nextDelay = 650 + Math.random() * 850;
-      setTimeout(changeNumber, nextDelay);
-    }
-
-    setTimeout(changeNumber, 800);
-  }
-
-  requestAnimationFrame(countUp);
-})();
-
 </script>
 </body>
-</html>
+</html>/
