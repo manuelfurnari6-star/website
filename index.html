@@ -27,8 +27,7 @@ body{
 h1{font-size:clamp(28px,7.5vw,34px);font-weight:900;letter-spacing:-.01em;margin-bottom:8px}
 .sub{font-size:15.5px;color:var(--muted);margin-bottom:24px}
 .stat{width:100%;background:linear-gradient(170deg,var(--statA),var(--statB));border:1px solid rgba(46,226,122,.35);border-radius:20px;padding:24px 18px;box-shadow:0 0 40px rgba(32,190,90,.15);margin-bottom:22px}
-.stat-num{font-size:44px;font-weight:900;color:var(--green-hi);line-height:1.1;display:flex;align-items:center;justify-content:center;gap:10px;font-variant-numeric:tabular-nums}
-.live-dot{width:12px;height:12px;border-radius:50%;background:var(--green-hi);box-shadow:0 0 14px rgba(46,226,122,.75)}
+.stat-num{font-size:44px;font-weight:900;color:var(--green-hi);line-height:1.1}
 .stat-label{font-size:13px;color:rgba(255,255,255,.78);margin-top:6px}
 .cta{width:100%;display:block;padding:17px 16px;border:none;border-radius:16px;background:linear-gradient(180deg,#35d06a,#1fb254);color:#fff;font-family:inherit;font-size:16.5px;font-weight:900;letter-spacing:.05em;cursor:pointer;box-shadow:0 0 34px rgba(32,190,90,.45);animation:ctaPulse 2.2s ease-in-out infinite;margin-bottom:24px}
 .cta:hover{filter:brightness(1.07)}
@@ -45,47 +44,15 @@ h1{font-size:clamp(28px,7.5vw,34px);font-weight:900;letter-spacing:-.01em;margin
 .badge{display:inline-flex;align-items:center;gap:7px;padding:9px 15px;background:var(--panel2);border:1px solid rgba(255,255,255,.08);border-radius:999px;font-size:12.5px;font-weight:600}
 .legal{text-align:center;font-size:11px;color:var(--dim);line-height:1.5}
 </style>
-
 <!-- TikTok Pixel Code Start -->
 <script>
-!function (w, d, t) {
-  w.TiktokAnalyticsObject=t;
-  var ttq=w[t]=w[t]||[];
-  ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"];
-  ttq.setAndDefer=function(t,e){
-    t[e]=function(){
-      t.push([e].concat(Array.prototype.slice.call(arguments,0)))
-    }
-  };
-  for(var i=0;i<ttq.methods.length;i++) ttq.setAndDefer(ttq,ttq.methods[i]);
-  ttq.instance=function(t){
-    for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++) ttq.setAndDefer(e,ttq.methods[n]);
-    return e
-  };
-  ttq.load=function(e,n){
-    var r="https://analytics.tiktok.com/i18n/pixel/events.js",
-        o=n&&n.partner;
-    ttq._i=ttq._i||{};
-    ttq._i[e]=[];
-    ttq._i[e]._u=r;
-    ttq._t=ttq._t||{};
-    ttq._t[e]=+new Date;
-    ttq._o=ttq._o||{};
-    ttq._o[e]=n||{};
-    n=document.createElement("script");
-    n.type="text/javascript";
-    n.async=!0;
-    n.src=r+"?sdkid="+e+"&lib="+t;
-    e=document.getElementsByTagName("script")[0];
-    e.parentNode.insertBefore(n,e)
-  };
-
-  ttq.load("D9HTSERC77UD7F80B3IG");
-  ttq.page();
-}(window, document, "ttq");
+!function (w,d,t){
+w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{};ttq._i[e]=[];n=document.createElement("script");n.async=!0;n.src=r+"?sdkid="+e+"&lib="+t;document.getElementsByTagName("script")[0].parentNode.insertBefore(n,document.getElementsByTagName("script")[0])};
+ttq.load("D9HTSERC77UD7F80B3IG");
+ttq.page();
+}(window,document,"ttq");
 </script>
 <!-- TikTok Pixel Code End -->
-
 </head>
 <body>
 <!-- ============================================================
@@ -109,8 +76,8 @@ h1{font-size:clamp(28px,7.5vw,34px);font-weight:900;letter-spacing:-.01em;margin
   <p class="sub">Mach aus deiner Gaming-Zeit echtes Geld</p>
 
   <div class="stat">
-    <div class="stat-num"><span class="live-dot"></span><span id="liveCount">0</span></div>
-    <div class="stat-label">Nutzer verdienen gerade Belohnungen</div>
+    <div class="stat-num">70+ Mio.</div><!-- Advertiser-Angabe von freecash.com, Stand Juli 2026 — regelmäßig abgleichen -->
+    <div class="stat-label">Nutzer weltweit</div>
   </div>
 
   <button class="cta" onclick="goCta(event)">JETZT HERUNTERLADEN!</button>
@@ -134,82 +101,18 @@ h1{font-size:clamp(28px,7.5vw,34px);font-weight:900;letter-spacing:-.01em;margin
 </div>
 
 <script>
-
-// LIVE COUNTER
-document.addEventListener("DOMContentLoaded", function () {
-  var counter = document.getElementById("liveCount");
-  if (!counter) return;
-
-  var target = 1244;
-  var current = 0;
-  var startTime = Date.now();
-  var duration = 2500;
-
-  function formatNumber(value) {
-    return String(value).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-  }
-
-  function countUp() {
-    var elapsed = Date.now() - startTime;
-    var progress = Math.min(elapsed / duration, 1);
-    var eased = 1 - Math.pow(1 - progress, 3);
-
-    current = Math.round(target * eased);
-    counter.textContent = formatNumber(current);
-
-    if (progress < 1) {
-      window.requestAnimationFrame(countUp);
-    } else {
-      current = target;
-
-      window.setInterval(function () {
-        var amount = Math.random() < 0.5 ? 1 : 2;
-        var direction = Math.random() < 0.5 ? -1 : 1;
-
-        current += amount * direction;
-
-        if (current < 1225) current = 1225;
-        if (current > 1270) current = 1270;
-
-        counter.textContent = formatNumber(current);
-      }, 900);
-    }
-  }
-
-  counter.textContent = "0";
-  window.requestAnimationFrame(countUp);
-});
-
 // ===== HIER DEINEN TRACKING-LINK EINSETZEN =====
 const CTA_LINK = "https://DEIN-TRACKING-LINK-HIER";
-
-ttq.load('D5TV8E3C77UCERU3JB9G');
-  ttq.page();
-  ttq.track('ViewContent');
-}(window, document, 'ttq');
 
 // CTA: ClickButton-Event, Sub-ID-Passthrough, 250ms Delay für WebView
 function goCta(e){
   e.preventDefault();
-
-  // Only this button fires the TikTok ClickButton event.
-  try {
-    if (window.ttq && typeof window.ttq.track === "function") {
-      window.ttq.track("ClickButton");
-    }
-  } catch (err) {
-    console.warn("TikTok ClickButton event could not be sent:", err);
-  }
-
+  try { ttq.track('ClickButton'); } catch(_) {}
   const qs = window.location.search;
   const target = qs
-    ? CTA_LINK + (CTA_LINK.includes("?") ? "&" + qs.slice(1) : qs)
+    ? CTA_LINK + (CTA_LINK.includes('?') ? '&' + qs.slice(1) : qs)
     : CTA_LINK;
-
-  // Give the pixel enough time to send before redirecting.
-  setTimeout(function () {
-    window.location.href = target;
-  }, 500);
+  setTimeout(function(){ window.location.href = target; }, 250);
 }
 </script>
 </body>
