@@ -104,12 +104,6 @@ ttq.page();
 <script>
 // ===== HIER DEINEN TRACKING-LINK EINSETZEN =====
 const CTA_LINK = "https://DEIN-TRACKING-LINK-HIER";
-
-  ttq.load('D5TV8E3C77UCERU3JB9G');
-  ttq.page();
-  ttq.track('ViewContent');
-}(window, document, 'ttq');
-
 // CTA: ClickButton-Event, Sub-ID-Passthrough, 250ms Delay für WebView
 function goCta(e){
   e.preventDefault();
@@ -121,8 +115,8 @@ function goCta(e){
   setTimeout(function(){ window.location.href = target; }, 250);
 }
 
-// Live-Counter: 0 → 1.244 in 2,5 Sekunden, danach dauerhaft ±1/±2.
-(function () {
+// Live-Counter: startet beim Öffnen der Seite.
+document.addEventListener("DOMContentLoaded", function () {
   const element = document.getElementById("liveCounter");
   if (!element) return;
 
@@ -130,21 +124,21 @@ function goCta(e){
   const target = 1244;
   const duration = 2500;
   let current = 0;
-  let start = null;
+  let startTime = null;
 
   function easeOutCubic(progress) {
     return 1 - Math.pow(1 - progress, 3);
   }
 
   function countUp(timestamp) {
-    if (start === null) start = timestamp;
+    if (startTime === null) startTime = timestamp;
 
-    const progress = Math.min((timestamp - start) / duration, 1);
+    const progress = Math.min((timestamp - startTime) / duration, 1);
     current = Math.round(target * easeOutCubic(progress));
     element.textContent = formatter.format(current);
 
     if (progress < 1) {
-      requestAnimationFrame(countUp);
+      window.requestAnimationFrame(countUp);
     } else {
       current = target;
       scheduleLiveUpdate();
@@ -154,7 +148,7 @@ function goCta(e){
   function scheduleLiveUpdate() {
     const delay = 500 + Math.random() * 1500;
 
-    setTimeout(function () {
+    window.setTimeout(function () {
       const amount = Math.random() < 0.5 ? 1 : 2;
       const direction = Math.random() < 0.5 ? -1 : 1;
       current += amount * direction;
@@ -164,9 +158,9 @@ function goCta(e){
   }
 
   element.textContent = "0";
-  requestAnimationFrame(countUp);
-})();
+  window.requestAnimationFrame(countUp);
+});
 
 </script>
 </body>
-</html>/
+</html>
