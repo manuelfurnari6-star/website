@@ -27,10 +27,8 @@ body{
 h1{font-size:clamp(28px,7.5vw,34px);font-weight:900;letter-spacing:-.01em;margin-bottom:8px}
 .sub{font-size:15.5px;color:var(--muted);margin-bottom:24px}
 .stat{width:100%;background:linear-gradient(170deg,var(--statA),var(--statB));border:1px solid rgba(46,226,122,.35);border-radius:20px;padding:24px 18px;box-shadow:0 0 40px rgba(32,190,90,.15);margin-bottom:22px}
-.stat-num{font-size:44px;font-weight:900;color:var(--green-hi);line-height:1.1;display:flex;align-items:center;justify-content:center;gap:12px}
-.live-dot{width:12px;height:12px;border-radius:50%;background:var(--green-hi);box-shadow:0 0 0 5px rgba(46,226,122,.12),0 0 16px rgba(46,226,122,.9);flex:none;animation:livePulse 1.6s ease-in-out infinite}
-@keyframes livePulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.82);opacity:.72}}
-@media (prefers-reduced-motion:reduce){.live-dot{animation:none}}
+.stat-num{font-size:44px;font-weight:900;color:var(--green-hi);line-height:1.1;display:flex;align-items:center;justify-content:center;gap:10px;font-variant-numeric:tabular-nums}
+.live-dot{width:12px;height:12px;border-radius:50%;background:var(--green-hi);flex:0 0 12px;box-shadow:0 0 12px rgba(46,226,122,.55)}
 .stat-label{font-size:13px;color:rgba(255,255,255,.78);margin-top:6px}
 .cta{width:100%;display:block;padding:17px 16px;border:none;border-radius:16px;background:linear-gradient(180deg,#35d06a,#1fb254);color:#fff;font-family:inherit;font-size:16.5px;font-weight:900;letter-spacing:.05em;cursor:pointer;box-shadow:0 0 34px rgba(32,190,90,.45);animation:ctaPulse 2.2s ease-in-out infinite;margin-bottom:24px}
 .cta:hover{filter:brightness(1.07)}
@@ -56,7 +54,6 @@ ttq.page();
 }(window,document,"ttq");
 </script>
 <!-- TikTok Pixel Code End -->
-
 </head>
 <body>
 <!-- ============================================================
@@ -116,8 +113,6 @@ const CTA_LINK = "https://DEIN-TRACKING-LINK-HIER";
 // CTA: ClickButton-Event, Sub-ID-Passthrough, 250ms Delay für WebView
 function goCta(e){
   e.preventDefault();
-  try{ttq.track('ClickButton');}catch(e){}
-  e.preventDefault();
   try { ttq.track('ClickButton'); } catch(_) {}
   const qs = window.location.search;
   const target = qs
@@ -126,49 +121,49 @@ function goCta(e){
   setTimeout(function(){ window.location.href = target; }, 250);
 }
 
-// Interaktiver Live-Counter
-(function(){
-  const counter = document.getElementById("liveCounter");
-  if (!counter) return;
+// Live-Counter: 0 → 1.244 in 2,5 Sekunden, danach dauerhaft ±1/±2.
+(function () {
+  const element = document.getElementById("liveCounter");
+  if (!element) return;
 
+  const formatter = new Intl.NumberFormat("de-DE");
   const target = 1244;
   const duration = 2500;
-  const formatter = new Intl.NumberFormat("de-DE");
   let current = 0;
-  let startedAt = null;
+  let start = null;
 
-  function easeOutCubic(value){
-    return 1 - Math.pow(1 - value, 3);
+  function easeOutCubic(progress) {
+    return 1 - Math.pow(1 - progress, 3);
   }
 
-  function countUp(timestamp){
-    if (startedAt === null) startedAt = timestamp;
+  function countUp(timestamp) {
+    if (start === null) start = timestamp;
 
-    const progress = Math.min((timestamp - startedAt) / duration, 1);
+    const progress = Math.min((timestamp - start) / duration, 1);
     current = Math.round(target * easeOutCubic(progress));
-    counter.textContent = formatter.format(current);
+    element.textContent = formatter.format(current);
 
     if (progress < 1) {
       requestAnimationFrame(countUp);
     } else {
       current = target;
-      scheduleNextChange();
+      scheduleLiveUpdate();
     }
   }
 
-  function scheduleNextChange(){
+  function scheduleLiveUpdate() {
     const delay = 500 + Math.random() * 1500;
 
-    setTimeout(function(){
+    setTimeout(function () {
       const amount = Math.random() < 0.5 ? 1 : 2;
       const direction = Math.random() < 0.5 ? -1 : 1;
       current += amount * direction;
-      counter.textContent = formatter.format(current);
-      scheduleNextChange();
+      element.textContent = formatter.format(current);
+      scheduleLiveUpdate();
     }, delay);
   }
 
-  counter.textContent = "0";
+  element.textContent = "0";
   requestAnimationFrame(countUp);
 })();
 
