@@ -44,15 +44,6 @@ h1{font-size:clamp(28px,7.5vw,34px);font-weight:900;letter-spacing:-.01em;margin
 .badge{display:inline-flex;align-items:center;gap:7px;padding:9px 15px;background:var(--panel2);border:1px solid rgba(255,255,255,.08);border-radius:999px;font-size:12.5px;font-weight:600}
 .legal{text-align:center;font-size:11px;color:var(--dim);line-height:1.5}
 </style>
-<!-- TikTok Pixel Code Start -->
-<script>
-!function (w,d,t){
-w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{};ttq._i[e]=[];n=document.createElement("script");n.async=!0;n.src=r+"?sdkid="+e+"&lib="+t;document.getElementsByTagName("script")[0].parentNode.insertBefore(n,document.getElementsByTagName("script")[0])};
-ttq.load("D9HTSERC77UD7F80B3IG");
-ttq.page();
-}(window,document,"ttq");
-</script>
-<!-- TikTok Pixel Code End -->
 </head>
 <body>
 <!-- ============================================================
@@ -76,8 +67,8 @@ ttq.page();
   <p class="sub">Mach aus deiner Gaming-Zeit echtes Geld</p>
 
   <div class="stat">
-    <div class="stat-num">70+ Mio.</div><!-- Advertiser-Angabe von freecash.com, Stand Juli 2026 — regelmäßig abgleichen -->
-    <div class="stat-label">Nutzer weltweit</div>
+    <div class="stat-num" id="liveCounter">0</div>
+    <div class="stat-label">Nutzer verdienen gerade Belohnungen</div>
   </div>
 
   <button class="cta" onclick="goCta(event)">JETZT HERUNTERLADEN!</button>
@@ -102,7 +93,15 @@ ttq.page();
 
 <script>
 // ===== HIER DEINEN TRACKING-LINK EINSETZEN =====
-const CTA_LINK = "https://DEIN-TRACKING-LINK-HIER";
+const CTA_LINK = "https://https://trksy.org/aff_c?tl_id=999896ad";
+
+// TikTok Pixel
+!function (w, d, t) {
+  w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)}(window, document, 'ttq');
+  ttq.load('D5TV8E3C77UCERU3JB9G');
+  ttq.page();
+  ttq.track('ViewContent');
+}(window, document, 'ttq');
 
 // CTA: ClickButton-Event, Sub-ID-Passthrough, 250ms Delay für WebView
 function goCta(e){
@@ -114,6 +113,57 @@ function goCta(e){
     : CTA_LINK;
   setTimeout(function(){ window.location.href = target; }, 250);
 }
+
+// Live-Counter: 0 -> 1.244 in ca. 2,5 Sekunden,
+// danach dauerhaft zufällige Änderungen um ±1 oder ±2.
+(function () {
+  const counter = document.getElementById("liveCounter");
+  if (!counter) return;
+
+  const target = 1244;
+  const duration = 2500;
+  const startTime = performance.now();
+
+  function formatGerman(value) {
+    return new Intl.NumberFormat("de-DE").format(value);
+  }
+
+  function easeOutCubic(t) {
+    return 1 - Math.pow(1 - t, 3);
+  }
+
+  function animate(now) {
+    const progress = Math.min((now - startTime) / duration, 1);
+    const current = Math.round(target * easeOutCubic(progress));
+    counter.textContent = formatGerman(current);
+
+    if (progress < 1) {
+      requestAnimationFrame(animate);
+    } else {
+      startLiveChanges(target);
+    }
+  }
+
+  function startLiveChanges(startValue) {
+    let current = startValue;
+
+    function update() {
+      const amount = Math.random() < 0.5 ? 1 : 2;
+      const direction = Math.random() < 0.5 ? -1 : 1;
+      current += amount * direction;
+
+      counter.textContent = formatGerman(current);
+
+      const nextDelay = 500 + Math.random() * 1500;
+      setTimeout(update, nextDelay);
+    }
+
+    setTimeout(update, 700);
+  }
+
+  requestAnimationFrame(animate);
+})();
+
 </script>
 </body>
 </html>/
