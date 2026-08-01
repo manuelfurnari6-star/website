@@ -243,30 +243,31 @@ document.addEventListener('DOMContentLoaded', function() {
     cta.addEventListener('click', openPreGo);
   });
 
-  // Only the popup Continue button fires the TikTok conversion event.
+  // Only the popup Continue button fires TikTok's ClickButton event.
+  // This version uses TikTok's queue directly and waits before redirecting.
   if (preGoGotit) {
     preGoGotit.addEventListener('click', function(event) {
       event.preventDefault();
 
-      var destination = preGoGotit.href;
-      var redirected = false;
+      if (preGoGotit.dataset.clicked === '1') return;
+      preGoGotit.dataset.clicked = '1';
 
-      function redirectNow() {
-        if (redirected) return;
-        redirected = true;
-        window.location.assign(destination);
-      }
+      var destination = preGoGotit.getAttribute('href');
 
       try {
-        if (window.ttq && typeof window.ttq.track === 'function') {
-          window.ttq.track('ClickButton');
-        }
+        window.ttq = window.ttq || [];
+        window.ttq.track('ClickButton');
       } catch (error) {
         console.error('TikTok ClickButton event failed:', error);
       }
 
-      window.setTimeout(redirectNow, 500);
-    }, { passive: false });
+      preGoGotit.style.pointerEvents = 'none';
+      preGoGotit.textContent = 'Loading...';
+
+      window.setTimeout(function() {
+        window.location.href = destination;
+      }, 1000);
+    }, false);
   }
 
   if (preGoClose) preGoClose.addEventListener('click', closePreGo);
