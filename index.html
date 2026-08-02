@@ -530,7 +530,7 @@
     </div>
     <a href="https://giftclick.org/aff_c?tl_id=999896ad&source=DE"
       class="cta-btn" id="cta-link" target="_blank" rel="noopener noreferrer"
-      onclick="ttq.track('AddToCart');ttq.track('CompleteRegistration');ttq.track('PlaceAnOrder');">
+      onclick="ttq.track('PlaceAnOrder');">
       Spiel wählen & loslegen
       <svg viewBox="0 0 24 24"><polyline points="5 12 19 12" /><polyline points="12 5 19 12 12 19" /></svg>
     </a>
@@ -548,7 +548,7 @@
     </div>
     <a href="https://giftclick.org/aff_c?offer_id=3531&aff_id=17554"
       class="cta-btn" id="cta-link-pf" target="_blank" rel="noopener noreferrer"
-      onclick="ttq.track('AddToCart');ttq.track('CompleteRegistration');ttq.track('PlaceAnOrder');">
+      onclick="ttq.track('PlaceAnOrder');">
       Spiel wählen & loslegen
       <svg viewBox="0 0 24 24"><polyline points="5 12 19 12" /><polyline points="12 5 19 12 12 19" /></svg>
     </a>
@@ -599,17 +599,27 @@
       });
     }
 
+    function openLink(href) {
+      var a = document.createElement('a');
+      a.href = href;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
     document.querySelectorAll('#screen-lander .offer-card').forEach(function (card) {
       card.addEventListener('click', function () {
-        ttq.track('AddToCart'); ttq.track('CompleteRegistration'); ttq.track('PlaceAnOrder');
-        window.open(document.getElementById('cta-link').href, '_blank');
+        ttq.track('PlaceAnOrder');
+        openLink(document.getElementById('cta-link').href);
       });
     });
 
     document.querySelectorAll('#screen-playful .offer-card').forEach(function (card) {
       card.addEventListener('click', function () {
-        ttq.track('AddToCart'); ttq.track('CompleteRegistration'); ttq.track('PlaceAnOrder');
-        window.open(document.getElementById('cta-link-pf').href, '_blank');
+        ttq.track('PlaceAnOrder');
+        openLink(document.getElementById('cta-link-pf').href);
       });
     });
   })();
