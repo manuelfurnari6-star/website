@@ -1,48 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  <title>Pick Your Game & Claim Your Welcome Bonus</title>
+  <title>Wähle dein Spiel & sichere dir deinen Willkommensbonus</title>
   <link rel="icon" href="data:,">
-  <meta name="description" content="Sign up free, Spiele spielen und echtes Geld verdienen. Cash out via PayPal, crypto or gift cards." />
+  <meta name="description" content="Kostenlos registrieren, Spiele spielen und echtes Geld verdienen. Auszahlung per PayPal, Krypto oder Geschenkkarten." />
   <link rel="preload" as="image" href="assets/freecash-logo.webp" />
-
-  <!-- ═══ TikTok In-App-Browser → nativer Browser → Ziel-URL ═══ -->
-  <script>
-  (function () {
-    var ua = navigator.userAgent || '';
-    var isTikTok = /musical_ly|tiktok|bytedance|musical\.ly/i.test(ua);
-    var TARGET = 'https://aprewrds.com/start.html';
-
-    if (isTikTok) {
-      // Android: intent:// öffnet Chrome, lädt dann direkt die Ziel-URL
-      if (/android/i.test(ua)) {
-        var intentUrl = 'intent://' + TARGET.replace(/^https?:\/\//, '') +
-          '#Intent;scheme=https;package=com.android.chrome;end';
-        window.location.href = intentUrl;
-        // Fallback: direkt weiterleiten falls Intent nicht greift
-        setTimeout(function () {
-          window.location.replace(TARGET);
-        }, 1500);
-        return;
-      }
-
-      // iOS: x-safari öffnet Safari und lädt die Ziel-URL
-      if (/iphone|ipad|ipod/i.test(ua)) {
-        window.location.href = 'x-safari-' + TARGET;
-        // Fallback: Chrome-Scheme
-        setTimeout(function () {
-          window.location.replace(TARGET.replace(/^https:\/\//, 'googlechrome://'));
-        }, 1500);
-        return;
-      }
-
-      // Sonstige Plattform: direkt weiterleiten
-      window.location.replace(TARGET);
-    }
-  })();
-  </script>
 
   <script>
   !function (w, d, t) {
@@ -92,9 +56,7 @@
     @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
     @keyframes ctaPulse{0%,100%{box-shadow:0 0 22px rgba(0,200,79,0.45)}50%{box-shadow:0 0 44px rgba(0,200,79,0.75),0 0 0 6px rgba(0,200,79,0.08)}}
     @keyframes pfPulse{0%,100%{box-shadow:0 0 22px rgba(124,92,231,0.45)}50%{box-shadow:0 0 44px rgba(124,92,231,0.75),0 0 0 6px rgba(124,92,231,0.08)}}
-    @keyframes logoGlow{0%,100%{box-shadow:0 0 12px rgba(0,200,79,0.35)}50%{box-shadow:0 0 24px rgba(0,200,79,0.65)}}
-    @keyframes timerTick{0%,49%{opacity:1}50%,99%{opacity:.4}100%{opacity:1}}
-    @keyframes pulseDot{0%,100%{opacity:1}50%{opacity:.3}}
+    @keyframes cueBounce{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(5px);opacity:1}}
 
     .f0{animation:fadeUp .5s ease both 0ms}
     .f1{animation:fadeUp .5s ease both 80ms}
@@ -113,110 +75,51 @@
       justify-content:center;
       background:linear-gradient(180deg,#0c0c0c 0%,#101010 50%,#0c0c0c 100%);
     }
-
-    .gate-logo-wrap{
-      width:68px;height:68px;border-radius:18px;overflow:hidden;
-      margin-bottom:22px;box-shadow:0 0 32px rgba(0,200,79,0.18);
-    }
+    .gate-logo-wrap{width:68px;height:68px;border-radius:18px;overflow:hidden;margin-bottom:22px;box-shadow:0 0 32px rgba(0,200,79,0.18)}
     .gate-logo{width:68px;height:68px;object-fit:cover}
-
     .gate h1{font-size:clamp(28px,9vw,40px);font-weight:900;line-height:1.1;letter-spacing:-0.02em;color:#fff;margin-bottom:10px}
     .gate h1 .gr{color:var(--primary)}
     .gate-sub{font-size:14px;color:var(--muted);margin-bottom:28px;line-height:1.5}
-
-    .gate-card{
-      width:100%;background:var(--card);border:1px solid var(--border);
-      border-radius:16px;padding:20px 18px;margin-bottom:28px;text-align:left;
-    }
-    .gate-card-header{
-      display:flex;align-items:center;gap:8px;
-      font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
-      color:var(--primary);margin-bottom:16px;
-    }
+    .gate-card{width:100%;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px 18px;margin-bottom:28px;text-align:left}
+    .gate-card-header{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--primary);margin-bottom:16px}
     .gate-card-dot{width:7px;height:7px;border-radius:50%;background:var(--primary);flex-shrink:0}
     .gate-card-item{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px}
     .gate-card-item:last-child{margin-bottom:0}
-    .gate-card-icon{
-      width:34px;height:34px;border-radius:9px;
-      background:rgba(0,200,79,0.1);
-      display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;
-    }
-    .gate-card-icon svg{
-      width:17px;height:17px;stroke:var(--primary);fill:none;
-      stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
-    }
+    .gate-card-icon{width:34px;height:34px;border-radius:9px;background:rgba(0,200,79,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+    .gate-card-icon svg{width:17px;height:17px;stroke:var(--primary);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
     .gate-card-text{font-size:13.5px;color:#b0b8c0;line-height:1.55}
     .gate-card-text strong{color:#fff;font-weight:700}
-
-    .btn-yes{
-      display:block;width:100%;background:var(--primary);color:var(--primary-fg);
-      border:none;border-radius:14px;padding:16px 24px;
-      font-family:inherit;font-size:16px;font-weight:700;cursor:pointer;text-align:center;
-      margin-bottom:10px;transition:background .15s,transform .1s;
-      -webkit-tap-highlight-color:transparent;
-    }
+    .btn-yes{display:block;width:100%;background:var(--primary);color:var(--primary-fg);border:none;border-radius:14px;padding:16px 24px;font-family:inherit;font-size:16px;font-weight:700;cursor:pointer;text-align:center;margin-bottom:10px;transition:background .15s,transform .1s;-webkit-tap-highlight-color:transparent}
     .btn-yes:hover{background:#00b843;transform:translateY(-1px)}
     .btn-yes:active{transform:translateY(0)}
-
-    .btn-no{
-      display:block;width:100%;background:transparent;color:var(--muted);
-      border:1px solid var(--border);border-radius:14px;padding:15px 24px;
-      font-family:inherit;font-size:15px;font-weight:500;cursor:pointer;text-align:center;
-      transition:border-color .15s,color .15s;-webkit-tap-highlight-color:transparent;
-    }
+    .btn-no{display:block;width:100%;background:transparent;color:var(--muted);border:1px solid var(--border);border-radius:14px;padding:15px 24px;font-family:inherit;font-size:15px;font-weight:500;cursor:pointer;text-align:center;transition:border-color .15s,color .15s;-webkit-tap-highlight-color:transparent}
     .btn-no:hover{border-color:#444;color:#aaa}
 
     /* ══ LANDER ══ */
-    .lander{
-      width:100%;max-width:430px;
-      background:linear-gradient(180deg,#0c0c0c 0%,#101010 50%,#0c0c0c 100%);
-      min-height:100vh;padding:24px 16px 130px;
-      flex-direction:column;gap:22px;position:relative;
-    }
-
+    .lander{width:100%;max-width:430px;background:linear-gradient(180deg,#0c0c0c 0%,#101010 50%,#0c0c0c 100%);min-height:100vh;padding:24px 16px 130px;flex-direction:column;gap:22px;position:relative}
     .header{display:flex;align-items:center;justify-content:space-between}
     .logo-wrap{display:flex;align-items:center;gap:8px}
     .logo-img{width:32px;height:32px;border-radius:9px;object-fit:cover}
     .logo-name{font-size:18px;font-weight:800;letter-spacing:-0.4px}
-
-    .timer{
-      display:flex;align-items:center;gap:5px;border:1px solid var(--border);
-      background:rgba(22,22,22,.7);border-radius:99px;padding:6px 12px;
-    }
+    .timer{display:flex;align-items:center;gap:5px;border:1px solid var(--border);background:rgba(22,22,22,.7);border-radius:99px;padding:6px 12px}
     .timer svg{width:13px;height:13px;stroke:var(--muted);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
     .timer-label{font-size:11px;color:var(--muted)}
-    .timer-time{font-size:11px;font-weight:800;color:var(--fg)}
-
     .trust-wrap{display:flex;justify-content:center}
-    .trust-badge{
-      display:inline-flex;align-items:center;gap:6px;
-      border:1px solid rgba(58,90,68,.5);background:rgba(58,90,68,.12);
-      border-radius:99px;padding:8px 16px;
-    }
+    .trust-badge{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(58,90,68,.5);background:rgba(58,90,68,.12);border-radius:99px;padding:8px 16px}
     .trust-badge svg{width:13px;height:13px;stroke:var(--accent-dim);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
     .trust-text{font-size:11px;font-weight:600;color:#9aa8a0}
-
     .hero{text-align:center;display:flex;flex-direction:column;gap:11px;position:relative}
     .hero::before{content:'';position:absolute;top:-20px;left:50%;transform:translateX(-50%);width:320px;height:200px;background:radial-gradient(ellipse at center,rgba(0,200,79,0.14),transparent 65%);pointer-events:none;z-index:-1}
     .hero h1{font-size:26px;font-weight:900;line-height:1.14;letter-spacing:-0.5px}
     .hero h1 span{color:var(--primary)}
     .hero p{font-size:13px;color:var(--muted);line-height:1.65;padding:0 8px}
-
     .pills{display:flex;flex-wrap:wrap;justify-content:center;gap:7px}
-    .pill{
-      display:inline-flex;align-items:center;gap:6px;border:1px solid var(--border);
-      background:rgba(22,22,22,.5);border-radius:99px;padding:7px 12px;
-    }
+    .pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--border);background:rgba(22,22,22,.5);border-radius:99px;padding:7px 12px}
     .pill svg{width:13px;height:13px;stroke:var(--muted);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
     .pill span{font-size:11px;font-weight:600;color:var(--muted)}
-
     .section-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:var(--muted)}
     .offers{display:flex;flex-direction:column;gap:10px}
-    .offer-card{
-      display:flex;align-items:center;gap:12px;border:1px solid var(--border);
-      background:rgba(22,22,22,.5);border-radius:16px;padding:14px;
-      transition:transform .12s;-webkit-tap-highlight-color:transparent;
-    }
+    .offer-card{display:flex;align-items:center;gap:12px;border:1px solid var(--border);background:rgba(22,22,22,.5);border-radius:16px;padding:14px;transition:transform .12s;-webkit-tap-highlight-color:transparent}
     .offer-card:active{transform:scale(.975)}
     .offer-card.highlight{border-color:rgba(0,200,79,.38);background:rgba(22,22,22,.72)}
     .offer-info{flex:1;min-width:0}
@@ -230,36 +133,23 @@
     .star-row svg{width:11px;height:11px;fill:var(--star)}
     .star-row span{font-size:11px;color:var(--muted)}
     .chevron-icon{width:15px;height:15px;flex-shrink:0;stroke:var(--muted);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
-
     .how-grid{display:flex;gap:8px}
     .how-card{flex:1;display:flex;flex-direction:column;align-items:center;gap:7px;border:1px solid var(--border);background:rgba(22,22,22,.5);border-radius:16px;padding:16px 12px;text-align:center}
     .how-step{font-size:17px;font-weight:800;color:var(--accent-dim)}
     .how-card svg{width:22px;height:22px;stroke:var(--accent-dim);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
     .how-title{font-size:12px;font-weight:700;color:var(--fg)}
     .how-desc{font-size:11px;color:var(--muted);line-height:1.45}
-
-    .urgency-box{
-      display:flex;align-items:center;justify-content:space-between;gap:12px;
-      background:rgba(0,200,79,.06);border:1px solid rgba(0,200,79,.2);
-      border-radius:16px;padding:14px 16px;
-    }
+    .urgency-box{display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(0,200,79,.06);border:1px solid rgba(0,200,79,.2);border-radius:16px;padding:14px 16px}
     .urgency-left{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
     .urgency-icon{font-size:20px;flex-shrink:0}
     .urgency-title{font-size:13px;font-weight:700;color:var(--fg);line-height:1.3;margin-bottom:2px}
     .urgency-text{font-size:11.5px;color:var(--muted);line-height:1.3}
-
     .rating{display:flex;flex-direction:column;align-items:center;gap:6px;padding:8px 0}
     .stars{display:flex;gap:3px}.stars svg{width:20px;height:20px;fill:var(--star)}
     .rating-text{font-size:13px;color:var(--muted)}.rating-text strong{color:var(--fg);font-weight:700}
-
     .sticky-cta{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;padding:24px 16px 18px;background:linear-gradient(to top,#0c0c0c 55%,rgba(12,12,12,0.85) 80%,transparent);z-index:40;display:none}
     .sticky-cta.visible{display:block}
-    .sticky-age-notice{
-      text-align:center;font-size:11px;color:var(--muted);line-height:1.4;
-      padding:8px 12px;margin-bottom:8px;
-      background:rgba(0,200,79,.06);border:1px solid rgba(0,200,79,.18);
-      border-radius:10px;
-    }
+    .sticky-age-notice{text-align:center;font-size:11px;color:var(--muted);line-height:1.4;padding:8px 12px;margin-bottom:8px;background:rgba(0,200,79,.06);border:1px solid rgba(0,200,79,.18);border-radius:10px}
     .sticky-age-notice strong{color:var(--primary);font-weight:700}
     .cta-tip{display:flex;align-items:flex-start;gap:8px;background:rgba(245,197,24,.07);border:1px solid rgba(245,197,24,.28);border-radius:12px;padding:11px 14px;margin-bottom:14px}
     .cta-tip-icon{font-size:15px;flex-shrink:0;line-height:1.4}
@@ -267,43 +157,22 @@
     .cta-tip-text strong{color:var(--star);font-weight:800}
     .cta-sub{display:flex;align-items:center;justify-content:center;gap:6px;font-size:11px;color:var(--muted);margin-top:8px}
     .cta-sub svg{width:13px;height:13px;flex-shrink:0}
-    .cta-btn{
-      width:100%;border:none;border-radius:18px;
-      background:linear-gradient(180deg,#1ae068 0%,#00c84f 55%,#00a942 100%);
-      color:var(--primary-fg);
-      font-family:inherit;font-size:17px;font-weight:800;padding:18px 24px;cursor:pointer;
-      display:flex;align-items:center;justify-content:center;gap:8px;
-      animation:ctaPulse 2.5s ease-in-out infinite;-webkit-tap-highlight-color:transparent;
-      transition:transform .1s;letter-spacing:-0.2px;text-decoration:none;
-      box-shadow:inset 0 1px 0 rgba(255,255,255,0.45),inset 0 -2px 4px rgba(0,0,0,0.18),0 6px 16px rgba(0,200,79,0.4);
-    }
+    .cta-btn{width:100%;border:none;border-radius:18px;background:linear-gradient(180deg,#1ae068 0%,#00c84f 55%,#00a942 100%);color:var(--primary-fg);font-family:inherit;font-size:17px;font-weight:800;padding:18px 24px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;animation:ctaPulse 2.5s ease-in-out infinite;-webkit-tap-highlight-color:transparent;transition:transform .1s;letter-spacing:-0.2px;text-decoration:none;box-shadow:inset 0 1px 0 rgba(255,255,255,0.45),inset 0 -2px 4px rgba(0,0,0,0.18),0 6px 16px rgba(0,200,79,0.4)}
     .cta-btn:active{transform:scale(.96)}
     .cta-btn svg{width:20px;height:20px;stroke:#000;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
-
-    @keyframes cueBounce{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(5px);opacity:1}}
     .cta-cue{display:flex;justify-content:center;margin-bottom:4px;animation:cueBounce 1.4s ease-in-out infinite}
     .cta-cue svg{width:22px;height:22px;stroke:var(--primary);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
-
     footer{display:flex;flex-direction:column;align-items:center;gap:8px;padding-top:10px}
     .footer-links{display:flex;gap:18px;flex-wrap:wrap;justify-content:center}
     .footer-links a{font-size:11px;color:var(--muted);text-decoration:none;opacity:.7}
     .footer-links a:hover{opacity:1}
     .footer-copy{font-size:11px;color:var(--muted);opacity:.5}
-
-    .unlock-note{display:flex;align-items:center;justify-content:center;gap:8px;text-align:center;
-      font-size:12.5px;color:var(--muted);line-height:1.4;margin-bottom:10px;
-      background:rgba(22,22,22,.5);border:1px solid var(--border);border-radius:12px;padding:10px 14px}
+    .unlock-note{display:flex;align-items:center;justify-content:center;gap:8px;text-align:center;font-size:12.5px;color:var(--muted);line-height:1.4;margin-bottom:10px;background:rgba(22,22,22,.5);border:1px solid var(--border);border-radius:12px;padding:10px 14px}
     .unlock-note strong{color:var(--primary);font-weight:700}
-
     @media(max-width:399px){.hero h1{font-size:24px}}
 
-    /* ══ PLAYFUL (under-21) SCOPED COLORS ══ */
-    .playful-scope{
-      --primary:#7c5ce7;
-      --primary-fg:#fff;
-      --accent-dim:#4a3f7a;
-      --bg:#0e0a1a;
-    }
+    /* ══ PLAYFUL ══ */
+    .playful-scope{--primary:#7c5ce7;--primary-fg:#fff;--accent-dim:#4a3f7a;--bg:#0e0a1a}
     .playful-scope.lander{background:linear-gradient(180deg,#0e0a1a 0%,#140e26 50%,#0e0a1a 100%)}
     .playful-scope .trust-badge{border:1px solid rgba(74,63,122,.5);background:rgba(74,63,122,.12)}
     .playful-scope .trust-badge svg{stroke:var(--accent-dim)}
@@ -314,10 +183,7 @@
     .playful-scope .offer-price{color:var(--primary)}
     .playful-scope .how-step,.playful-scope .how-card svg{color:var(--accent-dim);stroke:var(--accent-dim)}
     .playful-scope .urgency-box{background:rgba(124,92,231,.08);border:1px solid rgba(124,92,231,.22)}
-    .pf-sticky .cta-btn{
-      background:linear-gradient(180deg,#9579f0 0%,#7c5ce7 55%,#5d3fc4 100%);color:#fff;animation:pfPulse 2.5s ease-in-out infinite;
-      box-shadow:inset 0 1px 0 rgba(255,255,255,0.35),inset 0 -2px 4px rgba(0,0,0,0.2),0 6px 16px rgba(124,92,231,0.45);
-    }
+    .pf-sticky .cta-btn{background:linear-gradient(180deg,#9579f0 0%,#7c5ce7 55%,#5d3fc4 100%);color:#fff;animation:pfPulse 2.5s ease-in-out infinite;box-shadow:inset 0 1px 0 rgba(255,255,255,0.35),inset 0 -2px 4px rgba(0,0,0,0.2),0 6px 16px rgba(124,92,231,0.45)}
     .pf-sticky .cta-btn svg{stroke:#fff}
     .pf-sticky .cta-cue svg{stroke:var(--primary)}
     .pf-sticky .sticky-cta-bg{background:linear-gradient(to top,#0e0a1a 55%,rgba(14,10,26,0.85) 80%,transparent)}
@@ -327,14 +193,11 @@
 
   <!-- ═══ SCREEN 1: AGE GATE ═══ -->
   <div id="screen-gate" class="screen gate active">
-
     <div class="gate-logo-wrap f0">
       <img src="assets/freecash-logo.webp" alt="FreeCash" class="gate-logo" />
     </div>
-
-    <h1 class="f1">Are you <span class="gr">21+</span>?</h1>
-    <p class="gate-sub f2">Confirm your age to unlock the offer.</p>
-
+    <h1 class="f1">Bist du <span class="gr">21+</span>?</h1>
+    <p class="gate-sub f2">Bestätige dein Alter, um das Angebot freizuschalten.</p>
     <div class="gate-card f3">
       <div class="gate-card-header">
         <span class="gate-card-dot"></span>
@@ -344,23 +207,21 @@
         <div class="gate-card-icon">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><polyline points="12 7 12 12 15 15" /></svg>
         </div>
-        <div class="gate-card-text">You must be <strong>at least 21 years old</strong> to use the offers.</div>
+        <div class="gate-card-text">Du musst <strong>mindestens 21 Jahre alt</strong> sein, um die Angebote zu nutzen.</div>
       </div>
       <div class="gate-card-item">
         <div class="gate-card-icon">
           <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><line x1="19" y1="8" x2="19" y2="14" /><line x1="22" y1="11" x2="16" y2="11" /></svg>
         </div>
-        <div class="gate-card-text">Schon registriert? <strong>Create a new account</strong> through this page — existing accounts don't count.</div>
+        <div class="gate-card-text">Schon registriert? <strong>Erstelle über diese Seite ein neues Konto</strong> — bestehende Konten zählen nicht.</div>
       </div>
     </div>
-
-    <button class="btn-yes f4" id="btn-yes">Yes, I'm 21+</button>
-    <button class="btn-no f5" id="btn-no">No, I'm under 21</button>
+    <button class="btn-yes f4" id="btn-yes">Ja, ich bin 21+</button>
+    <button class="btn-no f5" id="btn-no">Nein, ich bin unter 21</button>
   </div>
 
-  <!-- ═══ SCREEN 2: LANDER ═══ -->
+  <!-- ═══ SCREEN 2: FREECASH LANDER ═══ -->
   <div id="screen-lander" class="screen lander">
-
     <div class="header f0">
       <div class="logo-wrap">
         <img src="assets/freecash-logo.webp" alt="FreeCash" class="logo-img" />
@@ -368,77 +229,77 @@
       </div>
       <div class="timer">
         <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" /></svg>
-        <span class="timer-label">Over $50M paid out</span>
+        <span class="timer-label">Über $50M ausgezahlt</span>
       </div>
     </div>
 
     <div class="trust-wrap f1">
       <div class="trust-badge">
         <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" /></svg>
-        <span class="trust-text">4.7/5 on Trustpilot · 270,000+ reviews</span>
+        <span class="trust-text">4,7/5 auf Trustpilot · 270.000+ Bewertungen</span>
       </div>
     </div>
 
     <div class="hero f2">
-      <h1>Pick your first game <span>& claim your welcome bonus</span></h1>
-      <p>Sign up for free, start a game of your choice — your welcome bonus is waiting after your first game.</p>
+      <h1>Wähle dein erstes Spiel <span>& sichere dir deinen Willkommensbonus</span></h1>
+      <p>Kostenlos registrieren, ein Spiel starten — dein Willkommensbonus wartet nach dem ersten Spiel.</p>
     </div>
 
     <div class="pills f3">
       <div class="pill">
         <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" /></svg>
-        <span>Instant payouts</span>
+        <span>Sofortauszahlung</span>
       </div>
       <div class="pill">
         <svg viewBox="0 0 24 24"><rect x="6" y="11" width="12" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /><line x1="12" y1="15" x2="12" y2="17" /></svg>
-        <span>100+ games</span>
+        <span>100+ Spiele</span>
       </div>
       <div class="pill">
         <svg viewBox="0 0 24 24"><polyline points="20 12 20 22 4 22 4 12" /><rect x="2" y="7" width="20" height="5" /><path d="M12 22V7" /><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z" /><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" /></svg>
-        <span>Daily bonuses</span>
+        <span>Tägliche Boni</span>
       </div>
       <div class="pill">
         <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
-        <span>Safe & Trusted</span>
+        <span>Sicher & vertrauenswürdig</span>
       </div>
     </div>
 
     <div class="f4" style="display:flex;flex-direction:column;gap:10px">
-      <span class="section-label">Pick your first game</span>
+      <span class="section-label">Wähle dein erstes Spiel</span>
       <div class="offers">
         <div class="offer-card highlight">
           <svg viewBox="0 0 48 48" style="width:48px;height:48px;border-radius:12px;flex-shrink:0"><defs><linearGradient id="g1" x1="0" y1="0" x2="48" y2="48"><stop offset="0" stop-color="#00e85a"/><stop offset="1" stop-color="#00a942"/></linearGradient></defs><rect width="48" height="48" rx="12" fill="#10231a"/><rect x="9" y="9" width="12" height="12" rx="3" fill="url(#g1)"/><rect x="27" y="9" width="12" height="12" rx="3" fill="#1f6b3a"/><rect x="9" y="27" width="12" height="12" rx="3" fill="#1f6b3a"/><rect x="27" y="27" width="12" height="12" rx="3" fill="url(#g1)"/></svg>
           <div class="offer-info">
-            <div class="offer-row"><span class="offer-name">Puzzle Games</span><span class="hot-badge">Beliebt</span></div>
-            <p class="offer-sub">Play & reach level 10</p>
+            <div class="offer-row"><span class="offer-name">Puzzle-Spiele</span><span class="hot-badge">Beliebt</span></div>
+            <p class="offer-sub">Spielen & Level 10 erreichen</p>
           </div>
           <div class="offer-right">
-            <span class="offer-price">Play</span>
-            <div class="star-row"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg><span>5.0</span></div>
+            <span class="offer-price">Spielen</span>
+            <div class="star-row"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg><span>5,0</span></div>
           </div>
           <svg class="chevron-icon" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6" /></svg>
         </div>
         <div class="offer-card">
           <svg viewBox="0 0 48 48" style="width:48px;height:48px;border-radius:12px;flex-shrink:0"><defs><linearGradient id="g2" x1="0" y1="0" x2="48" y2="48"><stop offset="0" stop-color="#00e85a"/><stop offset="1" stop-color="#00a942"/></linearGradient></defs><rect width="48" height="48" rx="12" fill="#10231a"/><path d="M16 14 L30 24 L16 34 Z" fill="url(#g2)"/><rect x="30" y="14" width="5" height="20" rx="2.5" fill="#1f6b3a"/></svg>
           <div class="offer-info">
-            <div class="offer-row"><span class="offer-name">Action Games</span></div>
-            <p class="offer-sub">Play & reach the level</p>
+            <div class="offer-row"><span class="offer-name">Action-Spiele</span></div>
+            <p class="offer-sub">Spielen & das Level erreichen</p>
           </div>
           <div class="offer-right">
-            <span class="offer-price">Play</span>
-            <div class="star-row"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg><span>5.0</span></div>
+            <span class="offer-price">Spielen</span>
+            <div class="star-row"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg><span>5,0</span></div>
           </div>
           <svg class="chevron-icon" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6" /></svg>
         </div>
         <div class="offer-card">
           <svg viewBox="0 0 48 48" style="width:48px;height:48px;border-radius:12px;flex-shrink:0"><defs><linearGradient id="g3" x1="0" y1="0" x2="48" y2="48"><stop offset="0" stop-color="#00e85a"/><stop offset="1" stop-color="#00a942"/></linearGradient></defs><rect width="48" height="48" rx="12" fill="#10231a"/><rect x="8" y="17" width="32" height="16" rx="8" fill="url(#g3)"/><rect x="13" y="22" width="3" height="6" rx="1.5" fill="#10231a"/><rect x="11" y="24" width="7" height="2" rx="1" fill="#10231a"/><circle cx="31" cy="23" r="2" fill="#10231a"/><circle cx="35" cy="27" r="2" fill="#10231a"/></svg>
           <div class="offer-info">
-            <div class="offer-row"><span class="offer-name">100+ more games</span></div>
-            <p class="offer-sub">Available after signup</p>
+            <div class="offer-row"><span class="offer-name">100+ weitere Spiele</span></div>
+            <p class="offer-sub">Verfügbar nach der Registrierung</p>
           </div>
           <div class="offer-right">
             <span class="offer-price">Mehr</span>
-            <div class="star-row"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg><span>4.9</span></div>
+            <div class="star-row"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg><span>4,9</span></div>
           </div>
           <svg class="chevron-icon" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6" /></svg>
         </div>
@@ -447,45 +308,45 @@
 
     <div class="cta-tip f4">
       <span class="cta-tip-icon">💡</span>
-      <span class="cta-tip-text">Important: When FreeCash asks <strong>"Have you played before?"</strong>, always tap <strong>NO</strong> — otherwise your game won't count and your bonus expires.</span>
+      <span class="cta-tip-text">Wichtig: Wenn FreeCash fragt <strong>„Hast du schon gespielt?"</strong>, tippe immer auf <strong>NEIN</strong> — sonst wird dein Spiel nicht gewertet und dein Bonus verfällt.</span>
     </div>
 
     <div class="urgency-box f5">
       <div class="urgency-left">
         <span class="urgency-icon">💸</span>
         <div>
-          <div class="urgency-title">Cash out via PayPal, crypto or gift cards</div>
-          <div class="urgency-text">Sign up free & get started</div>
+          <div class="urgency-title">Auszahlung per PayPal, Krypto oder Geschenkkarten</div>
+          <div class="urgency-text">Kostenlos registrieren & loslegen</div>
         </div>
       </div>
     </div>
 
     <div class="f6" style="display:flex;flex-direction:column;gap:10px">
-      <span class="section-label">How it works</span>
+      <span class="section-label">So funktioniert es</span>
       <div class="how-grid">
         <div class="how-card">
           <div class="how-step">1</div>
           <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><line x1="19" y1="8" x2="19" y2="14" /><line x1="22" y1="11" x2="16" y2="11" /></svg>
-          <div class="how-title">Sign up free</div>
-          <div class="how-desc">Download & sign up with Google in 10 seconds — no credit card needed.</div>
+          <div class="how-title">Kostenlos registrieren</div>
+          <div class="how-desc">Mit Google in 10 Sekunden anmelden — keine Kreditkarte nötig.</div>
         </div>
         <div class="how-card">
           <div class="how-step">2</div>
           <svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="2" /><line x1="11" y1="18" x2="13" y2="18" /></svg>
-          <div class="how-title">Install the game</div>
-          <div class="how-desc">Pick a game, install it and start your first round.</div>
+          <div class="how-title">Spiel installieren</div>
+          <div class="how-desc">Wähle ein Spiel, installiere es und starte deine erste Runde.</div>
         </div>
         <div class="how-card">
           <div class="how-step">3</div>
           <svg viewBox="0 0 24 24"><path d="M12 1v22" /><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" /></svg>
-          <div class="how-title">Claim bonus</div>
-          <div class="how-desc">Your welcome bonus is credited after your first game.</div>
+          <div class="how-title">Bonus sichern</div>
+          <div class="how-desc">Dein Willkommensbonus wird nach dem ersten Spiel gutgeschrieben.</div>
         </div>
       </div>
     </div>
 
     <div class="unlock-note f7">
-      <span>🎮</span><span><strong>The more you play, the more games unlock</strong> — new games appear as you level up.</span>
+      <span>🎮</span><span><strong>Je mehr du spielst, desto mehr Spiele werden freigeschaltet</strong> — neue Spiele erscheinen mit jedem Level-Up.</span>
     </div>
 
     <div class="rating f7">
@@ -496,7 +357,7 @@
         <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
         <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
       </div>
-      <div class="rating-text"><strong>4.7/5</strong> on Trustpilot · 270,000+ reviews</div>
+      <div class="rating-text"><strong>4,7/5</strong> auf Trustpilot · 270.000+ Bewertungen</div>
     </div>
 
     <footer>
@@ -509,9 +370,8 @@
     </footer>
   </div>
 
-  <!-- ═══ SCREEN 3: PLAYFUL LANDER (under-21) ═══ -->
+  <!-- ═══ SCREEN 3: PLAYFUL LANDER (unter 21) ═══ -->
   <div id="screen-playful" class="screen lander playful-scope">
-
     <div class="header f0">
       <div class="logo-wrap">
         <img src="assets/playful-logo.webp" alt="Playful Rewards" class="logo-img" />
@@ -519,77 +379,77 @@
       </div>
       <div class="timer">
         <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" /></svg>
-        <span class="timer-label">Over $50M paid out</span>
+        <span class="timer-label">Über $50M ausgezahlt</span>
       </div>
     </div>
 
     <div class="trust-wrap f1">
       <div class="trust-badge">
         <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" /></svg>
-        <span class="trust-text">4.7/5 on Trustpilot · 270,000+ reviews</span>
+        <span class="trust-text">4,7/5 auf Trustpilot · 270.000+ Bewertungen</span>
       </div>
     </div>
 
     <div class="hero f2">
-      <h1>Pick your first game <span>& claim your welcome bonus</span></h1>
-      <p>Sign up for free, start a game of your choice — your welcome bonus is waiting after your first game.</p>
+      <h1>Wähle dein erstes Spiel <span>& sichere dir deinen Willkommensbonus</span></h1>
+      <p>Kostenlos registrieren, ein Spiel starten — dein Willkommensbonus wartet nach dem ersten Spiel.</p>
     </div>
 
     <div class="pills f3">
       <div class="pill">
         <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" /></svg>
-        <span>Instant payouts</span>
+        <span>Sofortauszahlung</span>
       </div>
       <div class="pill">
         <svg viewBox="0 0 24 24"><rect x="6" y="11" width="12" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /><line x1="12" y1="15" x2="12" y2="17" /></svg>
-        <span>100+ games</span>
+        <span>100+ Spiele</span>
       </div>
       <div class="pill">
         <svg viewBox="0 0 24 24"><polyline points="20 12 20 22 4 22 4 12" /><rect x="2" y="7" width="20" height="5" /><path d="M12 22V7" /><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z" /><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" /></svg>
-        <span>Daily bonuses</span>
+        <span>Tägliche Boni</span>
       </div>
       <div class="pill">
         <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
-        <span>Safe & Trusted</span>
+        <span>Sicher & vertrauenswürdig</span>
       </div>
     </div>
 
     <div class="f4" style="display:flex;flex-direction:column;gap:10px">
-      <span class="section-label">Pick your first game</span>
+      <span class="section-label">Wähle dein erstes Spiel</span>
       <div class="offers">
         <div class="pf-offer-card offer-card highlight">
           <svg viewBox="0 0 48 48" style="width:48px;height:48px;border-radius:12px;flex-shrink:0"><defs><linearGradient id="pg1" x1="0" y1="0" x2="48" y2="48"><stop offset="0" stop-color="#9579f0"/><stop offset="1" stop-color="#5d3fc4"/></linearGradient></defs><rect width="48" height="48" rx="12" fill="#1a1530"/><rect x="9" y="9" width="12" height="12" rx="3" fill="url(#pg1)"/><rect x="27" y="9" width="12" height="12" rx="3" fill="#4a3f7a"/><rect x="9" y="27" width="12" height="12" rx="3" fill="#4a3f7a"/><rect x="27" y="27" width="12" height="12" rx="3" fill="url(#pg1)"/></svg>
           <div class="offer-info">
-            <div class="offer-row"><span class="offer-name">Puzzle Games</span><span class="hot-badge">Beliebt</span></div>
-            <p class="offer-sub">Play & reach level 10</p>
+            <div class="offer-row"><span class="offer-name">Puzzle-Spiele</span><span class="hot-badge">Beliebt</span></div>
+            <p class="offer-sub">Spielen & Level 10 erreichen</p>
           </div>
           <div class="offer-right">
-            <span class="offer-price">Play</span>
-            <div class="star-row"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg><span>5.0</span></div>
+            <span class="offer-price">Spielen</span>
+            <div class="star-row"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg><span>5,0</span></div>
           </div>
           <svg class="chevron-icon" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6" /></svg>
         </div>
         <div class="pf-offer-card offer-card">
           <svg viewBox="0 0 48 48" style="width:48px;height:48px;border-radius:12px;flex-shrink:0"><defs><linearGradient id="pg2" x1="0" y1="0" x2="48" y2="48"><stop offset="0" stop-color="#9579f0"/><stop offset="1" stop-color="#5d3fc4"/></linearGradient></defs><rect width="48" height="48" rx="12" fill="#1a1530"/><path d="M16 14 L30 24 L16 34 Z" fill="url(#pg2)"/><rect x="30" y="14" width="5" height="20" rx="2.5" fill="#4a3f7a"/></svg>
           <div class="offer-info">
-            <div class="offer-row"><span class="offer-name">Action Games</span></div>
-            <p class="offer-sub">Play & reach the level</p>
+            <div class="offer-row"><span class="offer-name">Action-Spiele</span></div>
+            <p class="offer-sub">Spielen & das Level erreichen</p>
           </div>
           <div class="offer-right">
-            <span class="offer-price">Play</span>
-            <div class="star-row"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg><span>5.0</span></div>
+            <span class="offer-price">Spielen</span>
+            <div class="star-row"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg><span>5,0</span></div>
           </div>
           <svg class="chevron-icon" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6" /></svg>
         </div>
         <div class="pf-offer-card offer-card">
           <svg viewBox="0 0 48 48" style="width:48px;height:48px;border-radius:12px;flex-shrink:0"><defs><linearGradient id="pg3" x1="0" y1="0" x2="48" y2="48"><stop offset="0" stop-color="#9579f0"/><stop offset="1" stop-color="#5d3fc4"/></linearGradient></defs><rect width="48" height="48" rx="12" fill="#1a1530"/><rect x="8" y="17" width="32" height="16" rx="8" fill="url(#pg3)"/><rect x="13" y="22" width="3" height="6" rx="1.5" fill="#1a1530"/><rect x="11" y="24" width="7" height="2" rx="1" fill="#1a1530"/><circle cx="31" cy="23" r="2" fill="#1a1530"/><circle cx="35" cy="27" r="2" fill="#1a1530"/></svg>
           <div class="offer-info">
-            <div class="offer-row"><span class="offer-name">100+ more games</span></div>
-            <p class="offer-sub">Available after signup</p>
+            <div class="offer-row"><span class="offer-name">100+ weitere Spiele</span></div>
+            <p class="offer-sub">Verfügbar nach der Registrierung</p>
           </div>
           <div class="offer-right">
             <span class="offer-price">Mehr</span>
-            <div class="star-row"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg><span>4.9</span></div>
+            <div class="star-row"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg><span>4,9</span></div>
           </div>
           <svg class="chevron-icon" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6" /></svg>
         </div>
@@ -598,45 +458,45 @@
 
     <div class="cta-tip f4">
       <span class="cta-tip-icon">💡</span>
-      <span class="cta-tip-text">Important: When Playful Rewards asks <strong>"Have you played before?"</strong>, always tap <strong>NO</strong> — otherwise your game won't count and your bonus expires.</span>
+      <span class="cta-tip-text">Wichtig: Wenn Playful Rewards fragt <strong>„Hast du schon gespielt?"</strong>, tippe immer auf <strong>NEIN</strong> — sonst wird dein Spiel nicht gewertet und dein Bonus verfällt.</span>
     </div>
 
     <div class="urgency-box f5">
       <div class="urgency-left">
         <span class="urgency-icon">💸</span>
         <div>
-          <div class="urgency-title">Cash out via PayPal, crypto or gift cards</div>
-          <div class="urgency-text">Sign up free & get started</div>
+          <div class="urgency-title">Auszahlung per PayPal, Krypto oder Geschenkkarten</div>
+          <div class="urgency-text">Kostenlos registrieren & loslegen</div>
         </div>
       </div>
     </div>
 
     <div class="f6" style="display:flex;flex-direction:column;gap:10px">
-      <span class="section-label">How it works</span>
+      <span class="section-label">So funktioniert es</span>
       <div class="how-grid">
         <div class="how-card">
           <div class="how-step">1</div>
           <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><line x1="19" y1="8" x2="19" y2="14" /><line x1="22" y1="11" x2="16" y2="11" /></svg>
-          <div class="how-title">Sign up free</div>
-          <div class="how-desc">Download & sign up with Google in 10 seconds — no credit card needed.</div>
+          <div class="how-title">Kostenlos registrieren</div>
+          <div class="how-desc">Mit Google in 10 Sekunden anmelden — keine Kreditkarte nötig.</div>
         </div>
         <div class="how-card">
           <div class="how-step">2</div>
           <svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="2" /><line x1="11" y1="18" x2="13" y2="18" /></svg>
-          <div class="how-title">Install the game</div>
-          <div class="how-desc">Pick a game, install it and start your first round.</div>
+          <div class="how-title">Spiel installieren</div>
+          <div class="how-desc">Wähle ein Spiel, installiere es und starte deine erste Runde.</div>
         </div>
         <div class="how-card">
           <div class="how-step">3</div>
           <svg viewBox="0 0 24 24"><path d="M12 1v22" /><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" /></svg>
-          <div class="how-title">Claim bonus</div>
-          <div class="how-desc">Your welcome bonus is credited after your first game.</div>
+          <div class="how-title">Bonus sichern</div>
+          <div class="how-desc">Dein Willkommensbonus wird nach dem ersten Spiel gutgeschrieben.</div>
         </div>
       </div>
     </div>
 
     <div class="unlock-note f7">
-      <span>🎮</span><span><strong>The more you play, the more games unlock</strong> — new games appear as you level up.</span>
+      <span>🎮</span><span><strong>Je mehr du spielst, desto mehr Spiele werden freigeschaltet</strong> — neue Spiele erscheinen mit jedem Level-Up.</span>
     </div>
 
     <div class="rating f7">
@@ -647,7 +507,7 @@
         <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
         <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
       </div>
-      <div class="rating-text"><strong>4.7/5</strong> on Trustpilot · 270,000+ reviews</div>
+      <div class="rating-text"><strong>4,7/5</strong> auf Trustpilot · 270.000+ Bewertungen</div>
     </div>
 
     <footer>
@@ -660,27 +520,27 @@
     </footer>
   </div>
 
-  <!-- STICKY CTA -->
+  <!-- STICKY CTA FREECASH -->
   <div class="sticky-cta" id="stickyCta">
     <div class="cta-cue" aria-hidden="true">
       <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9" /></svg>
     </div>
     <div class="sticky-age-notice">
-      <span>⚠️</span> At signup, enter an age of <strong>21+</strong> to unlock all offers.
+      <span>⚠️</span> Gib bei der Anmeldung ein Alter von <strong>21+</strong> an, um alle Angebote freizuschalten.
     </div>
-    <a href="https://giftclick.org/aff_c?offer_id=3531&aff_id=17554"
+    <a href="https://giftclick.org/aff_c?tl_id=999896ad&source=DE"
       class="cta-btn" id="cta-link" target="_blank" rel="noopener noreferrer"
       onclick="ttq.track('AddToCart');ttq.track('CompleteRegistration');ttq.track('PlaceAnOrder');">
-      Pick a game & get started
+      Spiel wählen & loslegen
       <svg viewBox="0 0 24 24"><polyline points="5 12 19 12" /><polyline points="12 5 19 12 12 19" /></svg>
     </a>
     <div class="cta-sub">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      Sign up with Google in 10 sec · No credit card
+      Mit Google in 10 Sek. anmelden · Keine Kreditkarte
     </div>
   </div>
 
-  <!-- PLAYFUL STICKY CTA -->
+  <!-- STICKY CTA PLAYFUL -->
   <div class="sticky-cta pf-sticky" id="stickyCtaPf">
     <div class="sticky-cta-bg" style="position:absolute;inset:0;z-index:-1"></div>
     <div class="cta-cue" aria-hidden="true">
@@ -689,12 +549,12 @@
     <a href="https://giftclick.org/aff_c?offer_id=3531&aff_id=17554"
       class="cta-btn" id="cta-link-pf" target="_blank" rel="noopener noreferrer"
       onclick="ttq.track('AddToCart');ttq.track('CompleteRegistration');ttq.track('PlaceAnOrder');">
-      Pick a game & get started
+      Spiel wählen & loslegen
       <svg viewBox="0 0 24 24"><polyline points="5 12 19 12" /><polyline points="12 5 19 12 12 19" /></svg>
     </a>
     <div class="cta-sub">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      Sign up with Google in 10 sec · No credit card
+      Mit Google in 10 Sek. anmelden · Keine Kreditkarte
     </div>
   </div>
 
